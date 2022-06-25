@@ -3,3 +3,89 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+body {
+    display: flex;
+    height: 100vh;
+}
+
+.root {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.screen {
+    flex: 1;
+    display: flex;
+    position: relative;
+}
+
+.screen input {
+    width: 100%;
+    height: 70%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    text-align: right;
+    overflow: scroll;
+    font-size: 300%;
+}
+
+.keypad {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+.keypad-top {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.keypad-top-memory {
+    flex: 1;
+    display: flex;
+}
+
+.keypad-top-memory button,
+.keypad-top-controls button {
+    flex: 1;
+}
+
+.keypad-top-controls {
+    flex: 1;
+    display: flex;
+}
+
+.keypad-bottom {
+    flex: 3;
+    display: flex;
+}
+
+.keypad-bottom-numbers {
+    flex: 3;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.keypad-bottom-numbers button {
+    flex: 3;
+    min-width: 33%;
+}
+
+.keypad-bottom-controls {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.keypad-bottom-controls button {
+    flex: 1;
+}
+
+.keypad-bottom-controls button:last-child {
+    flex: 2;
+    min-height: 50%;
+}
