@@ -12,7 +12,7 @@
 <body>
     <div class="root">
         <section class="screen">
-            <input type="number" placeholder="0">
+            <input type="number" placeholder="0" class="screen-input" disabled>
         </section>
         <section class="keypad">
             <section class="keypad-top">
@@ -23,31 +23,31 @@
                     <button class="memory-button">MR</button>
                 </section>
                 <section class="keypad-top-controls">
-                    <button class="control-button">C</button>
-                    <button class="control-button">/</button>
-                    <button class="control-button">X</button>
-                    <button class="control-button">D</button>
+                    <button class="clear-button">C</button>
+                    <button class="math-button" data-operator="divide">/</button>
+                    <button class="math-button" data-operator="multiply">X</button>
+                    <button class="backspace-button">D</button>
                 </section>
             </section>
             <section class="keypad-bottom">
                 <section class="keypad-bottom-numbers">
-                    <button class="number-button">9</button>
-                    <button class="number-button">7</button>
-                    <button class="number-button">8</button>
-                    <button class="number-button">6</button>
-                    <button class="number-button">5</button>
-                    <button class="number-button">4</button>
-                    <button class="number-button">3</button>
-                    <button class="number-button">2</button>
-                    <button class="number-button">1</button>
-                    <button class="control-button">%</button>
-                    <button class="number-button">0</button>
-                    <button class="number-button">,</button>
+                    <button class="number-button" value="9">9</button>
+                    <button class="number-button" value="8">8</button>
+                    <button class="number-button" value="7">7</button>
+                    <button class="number-button" value="6">6</button>
+                    <button class="number-button" value="5">5</button>
+                    <button class="number-button" value="4">4</button>
+                    <button class="number-button" value="3">3</button>
+                    <button class="number-button" value="2">2</button>
+                    <button class="number-button" value="1">1</button>
+                    <button class="comma-button">,</button>
+                    <button class="number-button" value="0">0</button>
+                    <button class="math-button" data-operator="percent">%</button>
                 </section>
                 <section class="keypad-bottom-controls">
-                    <button class="control-button">-</button>
-                    <button class="control-button">+</button>
-                    <button class="control-button">=</button>
+                    <button class="math-button" data-operator="substract">-</button>
+                    <button class="math-button" data-operator="add">+</button>
+                    <button class="result-button">=</button>
                 </section>
             </section>
         </section>
