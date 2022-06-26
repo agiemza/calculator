@@ -90,17 +90,17 @@ resultButton.addEventListener("click", () => {
 })
 
 function showResult(element) {
-    element = +element.toPrecision(10)
+    element = parseFloat(element).toFixed(6)
     if (element > 1000000000) {
         element = parseFloat(element).toPrecision(1)
     } else {
         if (element % 1 != 0) {
-            element = element.toFixed(5)
+            element = parseFloat(element).toFixed(5)
             while (element.toString().slice(-1) === "0") {
                 element = +element.slice(0, -1)
             }
         } else {
-            element = element.toFixed()
+            element = parseFloat(element).toFixed()
         }
     }
     screen.value = element
@@ -172,11 +172,10 @@ memoryButtons.forEach(button => {
 })
 
 window.onkeydown = e => {
-    e.key === "Enter" && document.querySelector(".result-button").click()
+    e.key === "Enter" && resultButton.click()
     const allButtons = document.querySelectorAll("[data-key]")
     allButtons.forEach(button => {
-        if(e.key == button.attributes["data-key"].value) {
-            console.log(button)
+        if (e.key == button.attributes["data-key"].value) {
             button.click()
         }
     })
