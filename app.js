@@ -27,6 +27,13 @@ numberButtons.forEach(button => {
     })
 })
 
+const dotButton = document.querySelector(".dot-button")
+dotButton.addEventListener("click", e => {
+    if (!/\./.test(screen.value)) {
+        screen.value += "."
+    }
+})
+
 const mathButtons = document.querySelectorAll(".math-button")
 mathButtons.forEach(button => {
     button.addEventListener("click", e => {
