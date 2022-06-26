@@ -2,7 +2,8 @@ const memory = {
     firstValue: 0,
     secondValue: 0,
     operation: null,
-    isListening: true,
+    isTyping: true,
+    userInput: false,
 }
 
 const screen = document.querySelector(".screen-input")
@@ -10,17 +11,18 @@ const screen = document.querySelector(".screen-input")
 const numberButtons = document.querySelectorAll(".number-button")
 numberButtons.forEach(button => {
     button.addEventListener("click", e => {
-        if (screen.value[0] === "0" && screen.value[1] !== ".") {
+        if (screen.value[0] === "0" && screen.value[1] !== "." && screen.value.length > 0) {
             screen.value = screen.value.substring(1)
         }
-        if (memory.isListening) {
+        if (memory.isTyping) {
             screen.value += e.target.value
         }
         else {
             screen.value = ""
-            memory.isListening = true
+            memory.isTyping = true
             screen.value += e.target.value
         }
+        memory.userInput = true
         memory.secondValue = screen.value
     })
 })
@@ -28,9 +30,16 @@ numberButtons.forEach(button => {
 const mathButtons = document.querySelectorAll(".math-button")
 mathButtons.forEach(button => {
     button.addEventListener("click", e => {
-        memory.operation = e.target.attributes["data-operator"].value
-        memory.firstValue = screen.value
-        memory.isListening = false
+        const previousOperation = memory.operation
+        const newOperation = e.target.attributes["data-operator"].value
+        if (previousOperation === null) {
+            memory.firstValue = memory.secondValue
+        } else if (memory.userInput) {
+            operate()
+        }
+        memory.operation = newOperation
+        memory.isTyping = false
+        memory.userInput = false
     })
 })
 
@@ -40,12 +49,15 @@ clearButton.addEventListener("click", () => {
     memory.secondValue = 0
     memory.operation = null
     screen.value = ""
+    memory.isTyping = true
+    memory.userInput = false
 })
 
 const resultButton = document.querySelector(".result-button")
 resultButton.addEventListener("click", () => {
-    memory.isListening = false
     operate()
+    memory.isTyping = false
+    memory.userInput = false
 })
 
 
@@ -55,12 +67,15 @@ function operate() {
     switch (memory.operation) {
         case "add":
             memory.firstValue = firstValue + secondValue
+            screen.value = memory.firstValue
             break
         case "substract":
             memory.firstValue = firstValue - secondValue
+            screen.value = memory.firstValue
             break
         case "multiply":
             memory.firstValue = firstValue * secondValue
+            screen.value = memory.firstValue
             break
         case "divide":
             if (secondValue !== 0) {
@@ -68,10 +83,10 @@ function operate() {
             } else {
                 memory.firstValue = "71830"
             }
+            screen.value = memory.firstValue
             break
         default:
-            console.log("no operation declared")
+            screen.value = memory.secondValue
             break
     }
-    screen.value = memory.firstValue
 }
