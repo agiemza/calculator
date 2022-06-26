@@ -14,19 +14,21 @@ const keypad = document.querySelector(".keypad")
 const numberButtons = document.querySelectorAll(".number-button")
 numberButtons.forEach(button => {
     button.addEventListener("click", e => {
-        if (screen.value[0] === "0" && screen.value[1] !== "." && screen.value.length > 0) {
-            screen.value = screen.value.substring(1)
+        if (screen.value.length < 10) {
+            if (screen.value[0] === "0" && screen.value[1] !== "." && screen.value.length > 0) {
+                screen.value = screen.value.substring(1)
+            }
+            if (memory.isTyping) {
+                screen.value += e.target.value
+            }
+            else {
+                screen.value = ""
+                memory.isTyping = true
+                screen.value += e.target.value
+            }
+            memory.userInput = true
+            memory.secondValue = screen.value
         }
-        if (memory.isTyping) {
-            screen.value += e.target.value
-        }
-        else {
-            screen.value = ""
-            memory.isTyping = true
-            screen.value += e.target.value
-        }
-        memory.userInput = true
-        memory.secondValue = screen.value
     })
 })
 
@@ -88,8 +90,8 @@ resultButton.addEventListener("click", () => {
 })
 
 function showResult(element) {
-    element = +element.toPrecision(9)
-    if (element > 10000000) {
+    element = +element.toPrecision(10)
+    if (element > 1000000000) {
         element = parseFloat(element).toPrecision(1)
     }
     else {
