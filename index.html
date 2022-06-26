@@ -12,16 +12,19 @@
 <body>
     <div class="root">
         <section class="screen">
-            <div class="alert-container"></div>
+            <section class="messages">
+                <div class="alert-container"></div>
+                <div class="memory-container">M</div>
+            </section>
             <input type="text" placeholder="0" class="screen-input" disabled>
         </section>
         <section class="keypad">
             <section class="keypad-top">
                 <section class="keypad-top-memory">
-                    <button class="memory-button">MC</button>
-                    <button class="memory-button">M+</button>
-                    <button class="memory-button">M-</button>
-                    <button class="memory-button">MR</button>
+                    <button class="memory-button" data-memory="clear">MC</button>
+                    <button class="memory-button" data-memory="add">M+</button>
+                    <button class="memory-button" data-memory="substract">M-</button>
+                    <button class="memory-button" data-memory="recall">MR</button>
                 </section>
                 <section class="keypad-top-controls">
                     <button class="clear-button">C</button>

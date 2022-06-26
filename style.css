@@ -22,11 +22,29 @@ body {
     position: relative;
 }
 
-.alert-container {
+.messages {
     flex: 1;
+    display: flex;
+}
+
+.alert-container,
+.memory-container {
+
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.alert-container {
+    flex: 10;
+}
+.memory-container {
+    flex: 1;
+    opacity: 0;
+}
+
+.opacity-1 {
+    opacity: 1;
 }
 
 .screen input {

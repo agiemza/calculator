@@ -4,6 +4,7 @@ const memory = {
     operation: null,
     isTyping: true,
     userInput: false,
+    storage: 0,
 }
 
 const screen = document.querySelector(".screen-input")
@@ -62,15 +63,15 @@ mathButtons.forEach(button => {
 
 const backspaceButton = document.querySelector(".backspace-button")
 backspaceButton.addEventListener("click", () => {
-    if(memory.isTyping){
-        screen.value = screen.value.slice(0,-1)
+    if (memory.isTyping) {
+        screen.value = screen.value.slice(0, -1)
     }
 })
 
 const clearButton = document.querySelector(".clear-button")
 clearButton.addEventListener("click", reset)
 
-function reset(){
+function reset() {
     memory.firstValue = 0
     memory.secondValue = 0
     memory.operation = null
@@ -125,9 +126,9 @@ function operate() {
                 memory.firstValue = firstValue / secondValue
                 showResult(memory.firstValue)
             } else {
-                reset()                
+                reset()
                 keypad.onmousedown = () => {
-                    alertContainer.innerText=""
+                    alertContainer.innerText = ""
                     keypad.onmousedown = ""
                 }
                 alertContainer.innerText = "You fool, that's an error!"
@@ -138,3 +139,33 @@ function operate() {
             break
     }
 }
+
+const memoryIcon = document.querySelector(".memory-container")
+
+const memoryButtons = document.querySelectorAll(".memory-button")
+memoryButtons.forEach(button => {
+    button.addEventListener("click", e => {
+        switch (e.target.attributes["data-memory"].value) {
+            case "clear":
+                memoryIcon.classList.remove("opacity-1")
+                memory.storage = 0
+                break
+            case "add":
+                if (screen.value) {
+                    memoryIcon.classList.add("opacity-1")
+                    memory.storage += parseFloat(screen.value)
+                }
+                break
+            case "substract":
+                if (screen.value) {
+                    memoryIcon.classList.add("opacity-1")
+                    memory.storage -= parseFloat(screen.value)
+                }
+                break
+            case "recall":
+                memory.secondValue = memory.storage
+                showResult(memory.secondValue)
+                break
+        }
+    })
+})
