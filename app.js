@@ -7,6 +7,8 @@ const memory = {
 }
 
 const screen = document.querySelector(".screen-input")
+const alertContainer = document.querySelector(".alert-container")
+const keypad = document.querySelector(".keypad")
 
 const numberButtons = document.querySelectorAll(".number-button")
 numberButtons.forEach(button => {
@@ -59,14 +61,16 @@ mathButtons.forEach(button => {
 })
 
 const clearButton = document.querySelector(".clear-button")
-clearButton.addEventListener("click", () => {
+clearButton.addEventListener("click", reset)
+
+function reset(){
     memory.firstValue = 0
     memory.secondValue = 0
     memory.operation = null
     screen.value = ""
     memory.isTyping = true
     memory.userInput = false
-})
+}
 
 const resultButton = document.querySelector(".result-button")
 resultButton.addEventListener("click", () => {
@@ -112,10 +116,15 @@ function operate() {
         case "divide":
             if (secondValue !== 0) {
                 memory.firstValue = firstValue / secondValue
+                showResult(memory.firstValue)
             } else {
-                memory.firstValue = 71830
+                reset()                
+                keypad.onmousedown = () => {
+                    alertContainer.innerText=""
+                    keypad.onmousedown = ""
+                }
+                alertContainer.innerText = "You fool, that's an error!"
             }
-            showResult(memory.firstValue)
             break
         default:
             showResult(memory.secondValue)
