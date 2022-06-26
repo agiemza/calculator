@@ -39,14 +39,22 @@ mathButtons.forEach(button => {
     button.addEventListener("click", e => {
         const previousOperation = memory.operation
         const newOperation = e.target.attributes["data-operator"].value
-        if (previousOperation === null) {
-            memory.firstValue = memory.secondValue
-        } else if (memory.userInput) {
-            operate()
+        if (newOperation === "percent") {
+            if (!memory.firstValue) {
+                memory.firstValue = 1
+            }
+            memory.secondValue = memory.firstValue * (memory.secondValue / 100)
+            showResult(memory.secondValue)
+        } else {
+            if (previousOperation === null) {
+                memory.firstValue = memory.secondValue
+            } else if (memory.userInput) {
+                operate()
+            }
+            memory.operation = newOperation
+            memory.isTyping = false
+            memory.userInput = false
         }
-        memory.operation = newOperation
-        memory.isTyping = false
-        memory.userInput = false
     })
 })
 
@@ -67,6 +75,23 @@ resultButton.addEventListener("click", () => {
     memory.userInput = false
 })
 
+function showResult(element) {
+    element = +element.toPrecision(9)
+    if (element > 10000000) {
+        element = parseFloat(element).toPrecision(1)
+    }
+    else {
+        if (element % 1 != 0) {
+            element = element.toFixed(5)
+            while (element.toString().slice(-1) === "0") {
+                element = +element.slice(0, -1)
+            }
+        } else {
+            element = element.toFixed()
+        }
+    }
+    screen.value = element
+}
 
 function operate() {
     const firstValue = parseFloat(memory.firstValue)
@@ -74,26 +99,26 @@ function operate() {
     switch (memory.operation) {
         case "add":
             memory.firstValue = firstValue + secondValue
-            screen.value = memory.firstValue
+            showResult(memory.firstValue)
             break
         case "substract":
             memory.firstValue = firstValue - secondValue
-            screen.value = memory.firstValue
+            showResult(memory.firstValue)
             break
         case "multiply":
             memory.firstValue = firstValue * secondValue
-            screen.value = memory.firstValue
+            showResult(memory.firstValue)
             break
         case "divide":
             if (secondValue !== 0) {
                 memory.firstValue = firstValue / secondValue
             } else {
-                memory.firstValue = "71830"
+                memory.firstValue = 71830
             }
-            screen.value = memory.firstValue
+            showResult(memory.firstValue)
             break
         default:
-            screen.value = memory.secondValue
+            showResult(memory.secondValue)
             break
     }
 }
