@@ -93,8 +93,7 @@ function showResult(element) {
     element = +element.toPrecision(10)
     if (element > 1000000000) {
         element = parseFloat(element).toPrecision(1)
-    }
-    else {
+    } else {
         if (element % 1 != 0) {
             element = element.toFixed(5)
             while (element.toString().slice(-1) === "0") {
@@ -171,3 +170,14 @@ memoryButtons.forEach(button => {
         }
     })
 })
+
+window.onkeydown = e => {
+    e.key === "Enter" && document.querySelector(".result-button").click()
+    const allButtons = document.querySelectorAll("[data-key]")
+    allButtons.forEach(button => {
+        if(e.key == button.attributes["data-key"].value) {
+            console.log(button)
+            button.click()
+        }
+    })
+}
