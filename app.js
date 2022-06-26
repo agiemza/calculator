@@ -60,6 +60,13 @@ mathButtons.forEach(button => {
     })
 })
 
+const backspaceButton = document.querySelector(".backspace-button")
+backspaceButton.addEventListener("click", () => {
+    if(memory.isTyping){
+        screen.value = screen.value.slice(0,-1)
+    }
+})
+
 const clearButton = document.querySelector(".clear-button")
 clearButton.addEventListener("click", reset)
 
