@@ -6,13 +6,18 @@
 
 body {
     display: flex;
+    justify-content: center;
     height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #22222a;
 }
 
 .root {
     flex: 1;
     display: flex;
     flex-direction: column;
+    max-width: 425px;
+    box-shadow: 3px 3px 17px 0px black;
 }
 
 .screen {
@@ -20,27 +25,32 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
+    padding: 0 5px;
 }
 
 .messages {
     flex: 1;
     display: flex;
+    font-weight: 300;
 }
 
 .alert-container,
 .memory-container {
-
     display: flex;
-    justify-content: center;
     align-items: center;
+    color: #f7f7f7;
 }
 
 .alert-container {
     flex: 10;
+    justify-content: flex-start;
+    letter-spacing: 1px;
 }
+
 .memory-container {
     flex: 1;
     opacity: 0;
+    justify-content: center;
 }
 
 .opacity-1 {
@@ -54,12 +64,20 @@ body {
     text-align: right;
     overflow: scroll;
     font-size: 350%;
+    color: #f7f7f7;
+    background: none;
+    border: none;
+}
+
+.screen input::placeholder {
+    color: #f7f7f7;
 }
 
 .keypad {
     flex: 2;
     display: flex;
     flex-direction: column;
+    background-color: #2A2A36;
 }
 
 .keypad-top {
@@ -113,4 +131,52 @@ body {
 .keypad-bottom-controls button:last-child {
     flex: 2;
     min-height: 50%;
+}
+
+.keypad-top-controls>.math-button,
+.backspace-button,
+.keypad-bottom-controls button {
+    color: #f3ab12;
+}
+
+.keypad-top-memory button {
+    color: #b2b2b2;
+}
+
+
+button {
+    border: 1px solid #252525;
+    background: none;
+    color: #f7f7f7;
+    font-size: 15px;
+}
+
+button:focus-visible {
+    outline: none;
+    background-color: #38384a;
+}
+
+button:hover {
+    border-color: #1f1f25;
+}
+
+button:active {
+    box-shadow: inset 0px 0px 2px 2px #1f1f25;
+}
+
+.clear-button {
+    color: #f35412;
+}
+
+@media screen and (min-width: 425px) {
+    .root {
+        max-width: 400px;
+        border: 1px solid #3e3e3e;
+        border-radius: 5px;
+        margin: 20px 0;
+    }
+
+    .screen {
+        padding: 0 20px;
+    }
 }
