@@ -172,11 +172,16 @@ memoryButtons.forEach(button => {
 })
 
 window.onkeydown = e => {
-    e.key === "Enter" && resultButton.click()
+    if (e.key === "Enter") {
+        resultButton.click()
+        resultButton.focus()
+    }
+
     const allButtons = document.querySelectorAll("[data-key]")
     allButtons.forEach(button => {
         if (e.key == button.attributes["data-key"].value) {
             button.click()
+            button.focus()
         }
     })
 }

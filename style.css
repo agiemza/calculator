@@ -25,7 +25,7 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
-    padding: 0 5px;
+    padding: 0 10px;
 }
 
 .messages {
@@ -148,7 +148,7 @@ button {
     border: 1px solid #252525;
     background: none;
     color: #f7f7f7;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 button:focus-visible {
@@ -166,6 +166,37 @@ button:active {
 
 .clear-button {
     color: #f35412;
+}
+
+.backspace-button,
+.backspace {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.backspace {
+    border: 1px solid #f3ab12;
+    background-color: #f3ab12;
+    font-size: 12px;
+    font-weight: bold;
+    color: #2A2A36;
+    width: 30px;
+    height: 20px;
+    position: relative;
+    margin-left: 8px;
+}
+
+.backspace::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: -8px;
+    width: 12px;
+    height: 12px;
+    transform: rotate(-45deg);
+    border: 1px solid #f3ab12;
+    background-color: #f3ab12;
 }
 
 @media screen and (min-width: 425px) {
