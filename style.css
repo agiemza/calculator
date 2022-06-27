@@ -177,26 +177,28 @@ button:active {
 
 .backspace {
     border: 1px solid #f3ab12;
-    background-color: #f3ab12;
+    border-left-color: transparent;
+    border-radius: 2px;
     font-size: 12px;
-    font-weight: bold;
-    color: #2A2A36;
+    color: #f3ab12;
     width: 30px;
     height: 20px;
     position: relative;
-    margin-left: 8px;
+    margin-left: 9px;
 }
 
 .backspace::before {
     content: "";
     position: absolute;
     top: 2px;
-    left: -8px;
+    left: -7px;
     width: 12px;
     height: 12px;
     transform: rotate(-45deg);
     border: 1px solid #f3ab12;
-    background-color: #f3ab12;
+    border-radius: 1px;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
 }
 
 @media screen and (min-width: 425px) {
