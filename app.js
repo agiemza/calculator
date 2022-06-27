@@ -14,21 +14,22 @@ const keypad = document.querySelector(".keypad")
 const numberButtons = document.querySelectorAll(".number-button")
 numberButtons.forEach(button => {
     button.addEventListener("click", e => {
-        if (screen.value.length < 9) {
-            if (screen.value[0] === "0" && screen.value[1] !== "." && screen.value.length > 0) {
-                screen.value = screen.value.substring(1)
-            }
-            if (memory.isTyping) {
-                screen.value += e.target.value
-            }
-            else {
-                screen.value = ""
-                memory.isTyping = true
-                screen.value += e.target.value
-            }
-            memory.userInput = true
-            memory.secondValue = screen.value
+        if (screen.value[0] === "0" && screen.value[1] !== "." && screen.value.length > 0) {
+            screen.value = screen.value.substring(1)
         }
+        if (screen.value.length > 8 && memory.userInput) {
+            return
+        }
+        if (memory.isTyping) {
+            screen.value += e.target.value
+        }
+        else {
+            screen.value = ""
+            memory.isTyping = true
+            screen.value += e.target.value
+        }
+        memory.userInput = true
+        memory.secondValue = screen.value
     })
 })
 
