@@ -1,5 +1,5 @@
 # CALCULATOR APP
 
-Calculator built in JavaScript.
+Calculator app built using JavaScript.
 
 [Live version](https://agiemza.github.io/calculator/)
